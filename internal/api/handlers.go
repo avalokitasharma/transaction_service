@@ -14,7 +14,7 @@ type TransactionHandler struct {
 	service *service.TransactionService
 }
 
-func NewTransactionoHandler(s *service.TransactionService) *TransactionHandler {
+func NewTransactionHandler(s *service.TransactionService) *TransactionHandler {
 	return &TransactionHandler{service: s}
 }
 
@@ -25,7 +25,7 @@ func (h *TransactionHandler) CreateTransaction(w http.ResponseWriter, r *http.Re
 		http.Error(w, "Invalid transaction id", http.StatusBadRequest)
 		return
 	}
-	var t models.Transactions
+	var t models.Transaction
 	if err := json.NewDecoder(r.Body).Decode(&t); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return

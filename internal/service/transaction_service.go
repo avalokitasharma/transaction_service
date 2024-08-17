@@ -13,11 +13,11 @@ func NewTransactionService(repo *repository.TransactionRepository) *TransactionS
 	return &TransactionService{repo: repo}
 }
 
-func (s *TransactionService) CreateTransaction(t *models.Transactions) error {
+func (s *TransactionService) CreateTransaction(t *models.Transaction) error {
 	return s.repo.Create(t)
 }
 
-func (s *TransactionService) GetTransaction(id int64) (*models.Transactions, error) {
+func (s *TransactionService) GetTransaction(id int64) (*models.Transaction, error) {
 	t, err := s.repo.Get(id)
 	return t, err
 }

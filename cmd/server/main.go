@@ -29,7 +29,7 @@ func main() {
 	defer db.Close()
 	repo := repository.NewTransactionoRepository(db)
 	service := service.NewTransactionService(repo)
-	handler := api.NewTransactionoHandler(service)
+	handler := api.NewTransactionHandler(service)
 
 	router := api.SetupRoutes(handler)
 

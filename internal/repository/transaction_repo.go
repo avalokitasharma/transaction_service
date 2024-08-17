@@ -14,15 +14,15 @@ func NewTransactionoRepository(db *sql.DB) *TransactionRepository {
 	return &TransactionRepository{db: db}
 }
 
-func (r *TransactionRepository) Create(t *models.Transactions) error {
+func (r *TransactionRepository) Create(t *models.Transaction) error {
 	query := `INSERT INTO transactions (id, amount, type, parent_id) VALUES ($1, $2, $3, $4)`
 	_, err := r.db.Exec(query, t.ID, t.Amount, t.Type, t.ParentID)
 	return err
 }
 
-func (r *TransactionRepository) Get(id int64) (*models.Transactions, error) {
+func (r *TransactionRepository) Get(id int64) (*models.Transaction, error) {
 	query := `SELECT id, amount, type, parent_id FROM transactions WHERE id=$1`
-	t := &models.Transactions{}
+	t := &models.Transaction{}
 	err := r.db.QueryRow(query, id).Scan(&t.ID, &t.Amount, &t.Type, &t.ParentID)
 	if err != nil {
 		return nil, err
